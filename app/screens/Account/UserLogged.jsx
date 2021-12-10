@@ -15,11 +15,15 @@ export default function UserLogged() {
     const [userInfo, setuserInfo] = useState(null)
     const [loadingText, setLoadingText] = useState("")
     
-    
+    const logout = ()=>{
+        firebase.auth().signOut()
+                    .then(() => console.log('User signed out!'))
+    }
     useEffect(() => {
         (async()=>{
             const user = await firebase.auth().currentUser;
             setuserInfo(user);
+            return ()=>{}
         })()
         return () => {
         }
@@ -39,8 +43,7 @@ export default function UserLogged() {
             <Button
                 buttonStyle={styles.btnCloseSession}
                 title="Cerrar sesión"
-                onPress={() => firebase.auth().signOut()
-                    .then(() => console.log('User signed out!'))}
+                onPress={() => logout}
                 titleStyle={styles.btnCloseSessionText}
             />
             <Toast

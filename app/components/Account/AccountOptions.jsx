@@ -1,45 +1,98 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { ListItem } from "react-native-elements";
 import { Icon } from "react-native-elements/dist/icons/Icon";
+import Modal from "../Modal";
+import ChangeDisplayNameForm from "./ChangeDisplayNameForm";
 
 
 export default function AccountOptions(props) {
     const { toastRef, userInfo } = props;
-    const menuOptions = generateOptions()
+    const [renderComponent, setRenderComponent] = useState(null)
+    const [showModal, setShowModal] = useState(false)
+    
+    const selectedComponent = (key) => {
+        switch (key) {
+            case "displayName":
+                setRenderComponent(
+                    <ChangeDisplayNameForm
+                    displayName={userInfo.displayName}
+                    setShowModal={setShowModal}
+                    toastRef={toastRef}
+                    />
+                )
+                setShowModal(true)
+                break;
+            case "email":
+                setRenderComponent(
+                    <ChangeDisplayNameForm/>
+                )
+                setShowModal(true)
+                break;
+            case "password":
+                setRenderComponent(
+                    <ChangeDisplayNameForm/>
+                )
+                setShowModal(true)
+                break;
+
+
+            default:
+                setRenderComponent(null)
+                setShowModal(false)
+                break;
+        }
+    }
+    const menuOptions = generateOptions(selectedComponent)
 
 
     return (
         <View>
             {menuOptions.map((menu, index) => (
-                
+
                 <ListItem
                     key={index}
                     bottomDivider
+                    onPress={menu.onPress}
                 >
-                    <Icon name={menu.iconName}/>
+                    <Icon color={menu.iconColor} type={menu.iconType} name={menu.iconName} />
                     <ListItem.Content>
                         <ListItem.Title>{menu.title}</ListItem.Title>
                     </ListItem.Content>
-                    <ListItem.Chevron />
+                    <ListItem.Chevron style={{ fontSize: "large" }} />
                 </ListItem>
-                
+
             ))}
+            {renderComponent&&<Modal isVisible={showModal} setIsVisible={setShowModal}>
+                {renderComponent}
+            </Modal>}
         </View>
     )
 }
 
-function generateOptions() {
+
+function generateOptions(selectedComponent) {
     return [
         {
             title: "Cambiar nombre y apellidos",
-            iconName: "rowing"
+            iconName: "account-circle",
+            iconType: "material-community",
+            iconColor: "#ccc",
+            onPress: () => selectedComponent("displayName"),
         },
         {
             title: "Cambiar email",
+            iconName: "at",
+            iconType: "material-community",
+            iconColor: "#ccc",
+            onPress: () => selectedComponent("email"),
         },
         {
             title: "Cambiar Contraseña",
+            iconName: "lock-reset",
+            iconType: "material-community",
+            iconColor: "#ccc",
+            onPress: () => selectedComponent("password"),
         }
     ]
 }
