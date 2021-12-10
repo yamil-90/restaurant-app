@@ -48,7 +48,7 @@ export default function UserLogged() {
             <Button
                 buttonStyle={styles.btnCloseSession}
                 title="Cerrar sesión"
-                onPress={() => logout}
+                onPress={() => logout()}
                 titleStyle={styles.btnCloseSessionText}
             />
             <Toast

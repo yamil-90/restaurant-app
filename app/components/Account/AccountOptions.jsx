@@ -4,37 +4,45 @@ import { ListItem } from "react-native-elements";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import Modal from "../Modal";
 import ChangeDisplayNameForm from "./ChangeDisplayNameForm";
-
+import ChangeEmailForm from "./ChangeEmailForm";
 
 export default function AccountOptions(props) {
     const { toastRef, userInfo, setuserInfo, setReloadUserInfo } = props;
     const [renderComponent, setRenderComponent] = useState(null)
     const [showModal, setShowModal] = useState(false);
-    
-    
+
+
     const selectedComponent = (key) => {
         switch (key) {
             case "displayName":
                 setRenderComponent(
                     <ChangeDisplayNameForm
-                    displayName={userInfo.displayName}
-                    setuserInfo={setuserInfo}
-                    setShowModal={setShowModal}
-                    toastRef={toastRef}
-                    setReloadUserInfo={setReloadUserInfo}
+                        displayName={userInfo.displayName}
+                        setuserInfo={setuserInfo}
+                        setShowModal={setShowModal}
+                        toastRef={toastRef}
+                        setReloadUserInfo={setReloadUserInfo}
                     />
                 )
                 setShowModal(true)
                 break;
             case "email":
                 setRenderComponent(
-                    <ChangeDisplayNameForm/>
+                    <ChangeEmailForm 
+                    email={userInfo.email}
+                        setuserInfo={setuserInfo}
+                        setShowModal={setShowModal}
+                        toastRef={toastRef}
+                        setReloadUserInfo={setReloadUserInfo}
+                        />
                 )
                 setShowModal(true)
                 break;
             case "password":
                 setRenderComponent(
-                    <ChangeDisplayNameForm/>
+                    <ChangeDisplayNameForm
+                        
+                    />
                 )
                 setShowModal(true)
                 break;
@@ -66,7 +74,7 @@ export default function AccountOptions(props) {
                 </ListItem>
 
             ))}
-            {renderComponent&&<Modal isVisible={showModal} setIsVisible={setShowModal}>
+            {renderComponent && <Modal isVisible={showModal} setIsVisible={setShowModal}>
                 {renderComponent}
             </Modal>}
         </View>
