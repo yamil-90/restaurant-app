@@ -7,9 +7,10 @@ import ChangeDisplayNameForm from "./ChangeDisplayNameForm";
 
 
 export default function AccountOptions(props) {
-    const { toastRef, userInfo } = props;
+    const { toastRef, userInfo, setuserInfo, setReloadUserInfo } = props;
     const [renderComponent, setRenderComponent] = useState(null)
-    const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState(false);
+    
     
     const selectedComponent = (key) => {
         switch (key) {
@@ -17,8 +18,10 @@ export default function AccountOptions(props) {
                 setRenderComponent(
                     <ChangeDisplayNameForm
                     displayName={userInfo.displayName}
+                    setuserInfo={setuserInfo}
                     setShowModal={setShowModal}
                     toastRef={toastRef}
+                    setReloadUserInfo={setReloadUserInfo}
                     />
                 )
                 setShowModal(true)

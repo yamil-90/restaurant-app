@@ -10,10 +10,11 @@ import AccountOptions from "../../components/Account/AccountOptions";
 
 
 export default function UserLogged() {
-    const toastRef = useRef()
-    const [loading, setloading] = useState(false)
-    const [userInfo, setuserInfo] = useState(null)
-    const [loadingText, setLoadingText] = useState("")
+    const toastRef = useRef();
+    const [loading, setloading] = useState(false);
+    const [userInfo, setuserInfo] = useState(null);
+    const [loadingText, setLoadingText] = useState("");
+    const [reloadUserInfo, setReloadUserInfo] = useState(false)
     
     const logout = ()=>{
         firebase.auth().signOut()
@@ -25,9 +26,10 @@ export default function UserLogged() {
             setuserInfo(user);
             return ()=>{}
         })()
-        return () => {
-        }
-    }, [])
+        setReloadUserInfo(false)
+        // return () => {
+        // }
+    }, [reloadUserInfo])
     return (
         <View style={styles.viewUserInfo}>
             <Text >info User</Text>
@@ -39,6 +41,9 @@ export default function UserLogged() {
             <AccountOptions
                 toastRef={toastRef}
                 userInfo={userInfo}
+                setuserInfo={setuserInfo}
+                setReloadUserInfo={setReloadUserInfo}
+
             />
             <Button
                 buttonStyle={styles.btnCloseSession}
