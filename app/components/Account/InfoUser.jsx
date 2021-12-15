@@ -11,7 +11,7 @@ export default function InfoUser(props) {
     } = props;
     const changeAvatar = async () => {
         const resultPermissionsCamera = await Camera.requestPermissionsAsync()
-        if (!resultPermissionsCamera.granted) {
+        if (resultPermissionsCamera.granted==='denied') {
             toastRef.current.show("hay que aceptar los permisos de la galeria")
         } else {
             const result = await ImagePicker.launchImageLibraryAsync({
