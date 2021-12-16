@@ -11,9 +11,10 @@ export default function Restaurants({navigation}) {
     const [user, setUser] = useState(null);
     const [restaurants, setRestaurants] = useState([]);
     const [totalRestaurants, setTotalRestaurants] = useState(null)
+    const [startRestaurants, setStartRestaurants] = useState(null)
     const limitRestaurant = 6
     
-    console.log(totalRestaurants)
+    // console.log(totalRestaurants)
     useEffect(() => {
         firebase.auth().onAuthStateChanged((userInfo)=>{
             // console.log(userInfo);
@@ -28,11 +29,18 @@ export default function Restaurants({navigation}) {
             setTotalRestaurants(snap.size)
         })
         const resultRestaurants = [];
+
         db.collection('restaurants')
         .orderBy('createdAt', 'desc')
         .limit(limitRestaurant).get()
         .then((response)=>{
-            console.log(response)
+            // console.log(response)
+            setStartRestaurants(response.docs[response.docs.lenght -1])
+            response.forEach((doc)=>{
+                const restaurant = doc.data();
+                restaurant.id = doc.id;
+                console.log(restaurant);
+            })
         })
     }, [])
     return (
