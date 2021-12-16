@@ -11,7 +11,7 @@ export default function RestaurantsStack(){
             <Stack.Screen 
             name="restaurantsName"
             component={Restaurants}
-            options={{title:"un restautante"}}
+            options={{title:"Restautantes"}}
             />
             <Stack.Screen 
             name="addRestaurant"

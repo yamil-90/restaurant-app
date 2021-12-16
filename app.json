@@ -20,10 +20,19 @@
       "supportsTablet": true
     },
     "android": {
-      "permissions":[
+      "package":"com.yamil.restaurantapp",
+      "config": {
+        "googleMaps":{
+          "apiKey": "AIzaSyBVY94vIo5MRobwXGVBFph6ydHfCofBkQs"
+        }
+      },
+      "permissions": [
         "CAMERA_ROLL",
         "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
+        "WRITE_EXTERNAL_STORAGE",
+        "LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
       ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
