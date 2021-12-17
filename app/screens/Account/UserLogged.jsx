@@ -32,7 +32,7 @@ export default function UserLogged() {
     }, [reloadUserInfo])
     return (
         <View style={styles.viewUserInfo}>
-            <Text >info User</Text>
+            
             {userInfo && <InfoUser 
             toastRef={toastRef}
             userInfo={userInfo}

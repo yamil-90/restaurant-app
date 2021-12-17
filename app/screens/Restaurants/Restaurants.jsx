@@ -1,54 +1,86 @@
-import React,  {useState, useEffect} from "react";
+import React,  {useState, useEffect, useCallback} from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
+import {useFocusEffect} from "@react-navigation/native"
 import {firebaseApp} from "../../utils/firebase";
 import firebase from "firebase/app";
 import 'firebase/firestore';
 
-const db = firebase.firestore(firebaseApp);
+import ListRestaurants from "../../components/Restaurants/ListRestaurants";
 
+const db = firebase.firestore(firebaseApp);
 export default function Restaurants({navigation}) {
     const [user, setUser] = useState(null);
     const [restaurants, setRestaurants] = useState([]);
     const [totalRestaurants, setTotalRestaurants] = useState(null)
     const [startRestaurants, setStartRestaurants] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
     const limitRestaurant = 6
     
-    // console.log(totalRestaurants)
+    useFocusEffect(
+        useCallback(()=>{
+            db.collection('restaurants')
+            .get()
+            .then((snap)=>{
+                setTotalRestaurants(snap.size)
+            })
+            const resultRestaurants = [];
+    
+            db.collection('restaurants')
+            .orderBy('createdAt', 'desc')
+            .limit(limitRestaurant).get()
+            .then((response)=>{
+                // console.log(response)
+                setStartRestaurants(response.docs[response.docs.length -1])
+                response.forEach((doc)=>{
+                    const restaurant = doc.data();
+                    restaurant.id = doc.id;
+                    resultRestaurants.push(restaurant);
+                    setRestaurants(resultRestaurants);
+                })
+            })
+        },[])
+    )
+
     useEffect(() => {
         firebase.auth().onAuthStateChanged((userInfo)=>{
-            // console.log(userInfo);
+            
             setUser(userInfo)
         })
     }, [])
 
-    useEffect(() => {
-        db.collection('restaurants')
-        .get()
-        .then((snap)=>{
-            setTotalRestaurants(snap.size)
-        })
-        const resultRestaurants = [];
-
+    const handleLoadMore=()=>{
+        const resultRestaurants=[];
+        restaurants.lenght < totalRestaurants && setIsLoading(true)
         db.collection('restaurants')
         .orderBy('createdAt', 'desc')
-        .limit(limitRestaurant).get()
+        .startAfter(startRestaurants.data().createdAt)
+        .limit(limitRestaurant)
+        .get()
         .then((response)=>{
-            // console.log(response)
-            setStartRestaurants(response.docs[response.docs.lenght -1])
+            if(response.docs.length >0){
+                setStartRestaurants(response.docs[response.docs.length-1]);
+            }else{
+                setIsLoading(false);
+            }
             response.forEach((doc)=>{
                 const restaurant = doc.data();
-                restaurant.id = doc.id;
-                console.log(restaurant);
+                restaurant.id=doc.id;
+                resultRestaurants.push(restaurant)
             })
+            setRestaurants([...restaurants, ...resultRestaurants])
         })
-    }, [])
+    }
+
     return (
         <View style={styles.viewBody}>
 
-            <Text >
-                Restaurants....
-            </Text>
+            <ListRestaurants
+            restaurants={restaurants}
+            handleLoadMore={handleLoadMore}
+            isLoading={isLoading}
+            
+            />
             {user && 
             <Icon
                 reverse
