@@ -31,9 +31,9 @@ export default function ChangeDisplayNameForm(props){
                 setIsLoading(false)
                 setShowModal(false)
             })
-            .catch((e)=>{
+            .catch((er)=>{
                 setError('error al actualizar el nombre');
-                console.log(e)
+                console.log('error is',er)
                 setIsLoading(false)
             })
         }

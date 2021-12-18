@@ -66,7 +66,7 @@ export default function AddRestaurantForm(props) {
 
                         console.log('ok');
                     }).catch((err)=>{
-                        console.log(err)
+                        console.log('error is ',err)
                         setIsLoading(false)
                         toastRef.current.show("error al subir el restaurant, intentelo mas tarde");
                     })

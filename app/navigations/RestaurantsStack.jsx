@@ -14,12 +14,12 @@ export default function RestaurantsStack(){
             <Stack.Screen 
             name="restaurantsName"
             component={Restaurants}
-            options={{title:"Restautantes"}}
+            options={{title:"Restaurantes"}}
             />
             <Stack.Screen 
             name="addRestaurant"
             component={AddRestaurants}
-            options={{title:"agregar restautante"}}
+            options={{title:"agregar restaurante"}}
             />
             <Stack.Screen 
             name="Restaurant"

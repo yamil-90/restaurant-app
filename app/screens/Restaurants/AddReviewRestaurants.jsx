@@ -29,7 +29,7 @@ const AddReviewRestaurants = (props) => {
         } else if (!review) {
             toastRef.current.show('El comentario es obligatorio')
         } else {
-            // setIsLoading(true);
+            setIsLoading(true);
             const user = firebase.auth().currentUser;
             const payload = {
                 idUser: user.uid,
@@ -38,7 +38,7 @@ const AddReviewRestaurants = (props) => {
                 title: title,
                 review: review,
                 rating: rating,
-                createAt: new Date(),
+                createdAt: new Date(),
               };
             db.collection("reviews")
                 .add(payload)
@@ -47,7 +47,7 @@ const AddReviewRestaurants = (props) => {
                     updateRestaurant()
                 })
                 .catch((er) => {
-                    console.log(er);
+                    console.log('error is',er);
                     setIsLoading(false)
                     toastRef.current.show('error al subir los datos')
 
@@ -57,26 +57,27 @@ const AddReviewRestaurants = (props) => {
     };
 
     const updateRestaurant =()=>{
-        const restaurantRef = db.collection('restaurant').doc(idRestaurant);
-        console.log(idRestaurant);
+        const restaurantRef = db.collection('restaurants').doc(idRestaurant);
+        // console.log(idRestaurant);
         restaurantRef.get().then((response)=>{
             const restaurantData= response.data();
-            console.log(response)
+            // console.log(response)
             const ratingTotal = restaurantData.ratingTotal + rating;
             const quantityVoted = restaurantData.quantityVoted +1;
             const ratingResult = ratingTotal/quantityVoted;
+
             restaurantRef
             .update({
                 rating : ratingResult,
                 ratingTotal,
-                quantityVoting
+                quantityVoted
             })
             .then(()=>{
                 setIsLoading(false)
                 navigation.goBack();
             })
             .catch((er)=>{
-                console.log(err);
+                console.log('error is',err);
             });
         });
     };
