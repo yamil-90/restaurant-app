@@ -15,7 +15,7 @@ export default function Navigation() {
     return (
         <NavigationContainer>
             <Tab.Navigator
-                initialRouteName="Restaurants"
+                initialRouteName="RestaurantsStack"
                 
                 screenOptions={
 
@@ -31,11 +31,11 @@ export default function Navigation() {
                           ]
                     })}
             >
-                <Tab.Screen name="Restaurants"
+                <Tab.Screen name="RestaurantsStack"
                     component={RestaurantsStack}
                     options={{
                         headerShown: false,
-                        title: "Restaurants"
+                        title: "Restaurantes"
                     }} />
                 <Tab.Screen name="Favorites"
                     component={FavoritesStack}
@@ -69,7 +69,7 @@ export default function Navigation() {
 function ScreenOptions(route, color) {
     let iconName;
     switch (route.name) {
-        case "Restaurants":
+        case "RestaurantsStack":
             iconName = "compass-outline"
             break;
         case "Favorites":

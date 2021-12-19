@@ -12,7 +12,11 @@ export default function LoginForm(props) {
     const { toastRef } = props;
     const [formData, setformData] = useState(defaultFormData());
     const [showPassword, setshowPassword] = useState(false);
-    const [loading, setloading] = useState(false)
+    const [loading, setLoading] = useState(false);
+
+    firebase.auth().onAuthStateChanged((user)=>{
+        user && navigation.navigate('AccountStack')
+    })
     
     const navigation = useNavigation();
 
@@ -25,17 +29,17 @@ export default function LoginForm(props) {
         }else if(!validateEmail(formData.email)){
             toastRef.current.show("El email no es valido")
         }else{
-            setloading(true)
+            setLoading(true)
             firebase.auth().signInWithEmailAndPassword(formData.email, formData.password)
             .then(()=>{
                 console.log("redirect to navigation")
-                setloading(false)
-                navigation.navigate("AccountStack")
+                setLoading(false)
+                navigation.goBack();
 
             })
             .catch((error)=>{
                 console.log(error)
-                setloading(false)
+                setLoading(false)
                 toastRef.current.show("datos invalidos")
             })
         }

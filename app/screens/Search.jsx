@@ -1,12 +1,27 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, {useState} from 'react'
+import { StyleSheet, Text, View, Flatlist, Image } from 'react-native'
+import { ListItem, Icon, SearchBar } from 'react-native-elements'
 
-export default function Search(){
+const Search = (props) => {
+    const {navigation}=props;
+const [search, setSearch] = useState("")
     return (
-    <View>
-        <Text>
-            Search....
-        </Text>
-    </View>
+        <View>
+            <SearchBar
+            placeholder='Buscar restaurante...'
+            onChangeText={(e)=>setSearch(e)}
+            value={search}
+            containerStyle={styles.searchBar}
+            />
+        </View>
     )
 }
+
+export default Search
+
+const styles = StyleSheet.create({
+    searchBar:{
+        marginBottom:20
+    }
+})
+

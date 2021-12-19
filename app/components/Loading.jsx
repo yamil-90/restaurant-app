@@ -23,10 +23,10 @@ export default function Loading(props) {
 const styles = StyleSheet.create({
     overlay: {
         height: 100,
-        width: 200,
+        width: 220,
         backgroundColor: "#fff",
         borderColor: "#00a680",
-        borderWidth: 2,
+        borderWidth:  1,
         borderRadius: 10
     },
     view: {
@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
     text: {
         color: "#228b22",
         textTransform: "uppercase",
-        marginTop: 10
+        marginTop: 10,
     }
 });
