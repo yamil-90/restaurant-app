@@ -5,7 +5,7 @@ Browse restaurants near you! This app also lets you add Restaurants to a databas
 # Screenshots
 
 
-<div style="display:flex; flex-direction: row">
+<div style="display:flex; flex-direction: row; justify-content: center">
 <img style="margin-right:5px; margin-bottom:5px" src="https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot1.png" width="250" height="400">
 <img style="margin-right:5px; margin-bottom:5px" src="https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot2.png" width="200" height="400">
 <img style="margin-right:5px; margin-bottom:5px" src="https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot3.jpg" width="200" height="400">
