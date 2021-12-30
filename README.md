@@ -4,16 +4,17 @@ Browse restaurants near you! This app also lets you add Restaurants to a databas
 
 # Screenshots
 
-![shot1](https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot1.png?raw=true)
+
 <img src="https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot1.png" width="200" height="400">
-![shot1]()
-![shot1]()
-![shot1]()
-![shot1]()
-![shot1]()
-![shot1]()
-![shot1]()
-![shot1]()
+<img src="https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot2.png" width="200" height="400">
+<img src="https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot3.jpg" width="200" height="400">
+<img src="https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot4.jpg" width="200" height="400">
+<img src="https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot5.jpg" width="200" height="400">
+<img src="https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot6.jpg" width="200" height="400">
+<img src="https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot7.jpg" width="200" height="400">
+<img src="https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot8.jpg" width="200" height="400">
+<img src="https://github.com/yamil-90/restaurant-app/blob/main/assets/screenshots/shot9.jpg" width="200" height="400">
+
 
 # Technologies and packages used
 
