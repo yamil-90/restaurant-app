@@ -8,6 +8,8 @@ import TopRestaurantsStack from "./TopRestaurantsStack";
 import AccountStack from "./AccountStack";
 import SearchStack from "./SearchStack";
 import { Icon } from "react-native-elements/dist/icons/Icon";
+import { Button } from "react-native";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +18,6 @@ export default function Navigation() {
         <NavigationContainer>
             <Tab.Navigator
                 initialRouteName="RestaurantsStack"
-                
                 screenOptions={
 
                     ({ route }) => ({
@@ -28,8 +29,11 @@ export default function Navigation() {
                               "display": "flex"
                             },
                             null
-                          ]
-                    })}
+                          ],
+                          
+                    })
+                    
+                }
             >
                 <Tab.Screen name="RestaurantsStack"
                     component={RestaurantsStack}

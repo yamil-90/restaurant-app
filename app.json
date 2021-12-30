@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -20,9 +20,9 @@
       "supportsTablet": true
     },
     "android": {
-      "package":"com.yamil.restaurantapp",
+      "package": "com.yamil.restaurantapp",
       "config": {
-        "googleMaps":{
+        "googleMaps": {
           "apiKey": "AIzaSyBVY94vIo5MRobwXGVBFph6ydHfCofBkQs"
         }
       },
@@ -36,12 +36,13 @@
       ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#00a680"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "Restaurant app make in react native for a udemy course",
+    "githubUrl": "https://github.com/yamil-90/restaurant-app"
   }
 }
